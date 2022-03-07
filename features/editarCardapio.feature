@@ -36,3 +36,21 @@ Scenario: Abelardo altera o link de compartilhamento do item Strogonoff de Frang
         And o pop-up é fechado
 
 Scenario: Ivonildo não consegue alterar foto do item Maçã do Cardápio
+        Given Ivonildo está na página de listagem de itens do Restaurante
+        And deseja alterar o foto do ingrediente Maçã da lista de itens do Restaurante
+        When Ivonildo clica no botão com ícone de “lápis”, no canto superior direto da foto do item Maçã
+        Then uma janela de Pop-up é exibida
+        And é indicado para que seja feito o upload da nova foto
+        When Ivonildo faz o upload da nova foto através do pop-up exibido e confirma clicando no botão de “confirma”
+        Then o pop-up exibe uma mensagem "ERROR: formato de arquivo inválido, por favor tente novamente"
+        And Ivonildo pode visualizar o pop-up foi restaurado ao estado anterior solicitando que seja feito o upload de nova foto
+
+Scenario: Gilbson não consegue alterar o preço do ingrediente Azeite de Oliva
+        Given Gilbson está na página de listagem de itens do Restaurante
+         And quer mudar o preço do ingrediente Azeite de Oliva
+        When Gilbson clica no botão com ícone de “lápis”,no canto inferior direto da foto do item Azeite de Oliva
+        Then uma janela de Pop-up é exibida
+        And é indicado para que um novo valor numérico seja inserido
+        When Gilbson insere o novo valor que corresponde ao novo preço e confirma clicando no botão de “confirma”
+        Then o pop-up exibe uma mensagem "ERROR: valor inserido não corresponde à um número válido, por favor tente novamente"
+        And Gilbson pode visualizar que o pop-up foi restaurado ao estado anterior solicitando que seja feita a inserção de um novo valor para Azeite de Oliva
