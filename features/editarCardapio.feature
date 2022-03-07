@@ -67,3 +67,5 @@ Scenario: Abelardo não consegue alterar o link de compartilhamento do item Stro
         Then o pop-up exibe uma mensagem "ERROR: formato de link inválido, favor tentar novamente"
         And Abelardo pode visualizar que o pop-up foi restaurado ao estado anterior
         Then Abelardo pode ver na tela o pop-up solicitando que um novo valor para o campo link seja inserido.
+
+Scenario: Teste da branch fixDesenvolvimento
