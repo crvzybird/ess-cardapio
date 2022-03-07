@@ -53,4 +53,5 @@ Scenario: Gilbson não consegue alterar o preço do ingrediente Azeite de Oliva
         And é indicado para que um novo valor numérico seja inserido
         When Gilbson insere o novo valor que corresponde ao novo preço e confirma clicando no botão de “confirma”
         Then o pop-up exibe uma mensagem "ERROR: valor inserido não corresponde à um número válido, por favor tente novamente"
-        And Gilbson pode visualizar que o pop-up foi restaurado ao estado anterior solicitando que seja feita a inserção de um novo valor para Azeite de Oliva
+        And Gilbson pode visualizar que o pop-up foi restaurado ao estado anterior
+        Then Gilbson pode ver o pop-up solicitando que seja feita a inserção de um novo valor para Azeite de Oliva
