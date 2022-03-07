@@ -65,5 +65,5 @@ Scenario: Abelardo não consegue alterar o link de compartilhamento do item Stro
         And é indicado para que um novo valor para o campo link seja inserido
         When Abelardo insere o novo link de compartilhamento e confirma clicando no botão de “confirma”
         Then o pop-up exibe uma mensagem "ERROR: formato de link inválido, favor tentar novamente"
-        And Abelardo pode visualizar que o pop-up foi restaurado ao estado anterior solicitando que um novo valor para o campo link seja inserido.
-        desenvolvimento
+        And Abelardo pode visualizar que o pop-up foi restaurado ao estado anterior
+        Then Abelardo pode ver na tela o pop-up solicitando que um novo valor para o campo link seja inserido.
