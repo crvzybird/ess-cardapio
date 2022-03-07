@@ -1,0 +1,29 @@
+Feature: Geração de link de compartilhamento de página personalizada
+Scenario 1: Geração de link de compartilhamento
+Scenario 2: Acesso a link de compartilhamento
+Scenario 3: Compartilhar no Twitter
+Scenario 4: Compartilhar no facebook
+
+Scenario: Gerando link de compartilhamento
+Given: Eu sou um usuário "admin" do "restaurante do carlito"
+and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
+When Eu clico em "Gerar link compartilhável"
+Then Eu vejo um link copiável para compartilhar o cardápio
+And o link é automaticamente colocado no meu clipboard
+
+Scenario: Acessando um link compartilhado
+Given: Eu sou um usuário "guest" do app
+When Acesso um link compartilhado de um cardapio de "entradas" do "restaurante do carlito"
+Then Eu sou levado ao app "ifood-cin" e vejo o cardápio de "entradas" do "restaurante do carlito"
+
+Scenario: Compartilhar no Twitter
+Given: Eu sou um usuário "admin" do "restaurante do carlito" e tenho o app "twitter" instalado no meu dispositivo
+and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
+When Eu acesso "Compartilhar no twitter"
+Then sou redirecionado para o app do "twitter" com um "esboço de um tweet" contendo o link do cardapio de "entradas"
+
+Scenario: Compartilhar no Twitter
+Given: Eu sou um usuário "admin" do "restaurante do carlito" e tenho o app "facebook" instalado no meu dispositivo
+and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
+When Eu acesso "Compartilhar no facebook"
+Then sou redirecionado para o app do "facebook" com um "esboço de um post" contendo o link do cardapio de "entradas"
