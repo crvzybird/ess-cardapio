@@ -55,3 +55,17 @@ Scenario: Gilbson não consegue alterar o preço do ingrediente Azeite de Oliva
         Then o pop-up exibe uma mensagem "ERROR: valor inserido não corresponde à um número válido, por favor tente novamente"
         And Gilbson pode visualizar que o pop-up foi restaurado ao estado anterior
         Then Gilbson pode ver o pop-up solicitando que seja feita a inserção de um novo valor para Azeite de Oliva
+        And Gilbson pode visualizar que o pop-up foi restaurado ao estado anterior solicitando que seja feita a inserção de um novo valor para Azeite de Oliva
+
+Scenario: Abelardo não consegue alterar o link de compartilhamento do item Strogonoff de Frango
+        Given Abelardo está na página de listagem de itens do Restaurante
+        And quer alterar o link de compartilhamento do item  Strogonoff de Frango
+        When Abelardo clica no botão com ícone de “corrente”,no canto superior esquerdo da foto  do item Strogonoff de Frango
+        Then uma janela de Pop-up é exibida
+        And é indicado para que um novo valor para o campo link seja inserido
+        When Abelardo insere o novo link de compartilhamento e confirma clicando no botão de “confirma”
+        Then o pop-up exibe uma mensagem "ERROR: formato de link inválido, favor tentar novamente"
+        And Abelardo pode visualizar que o pop-up foi restaurado ao estado anterior
+        Then Abelardo pode ver na tela o pop-up solicitando que um novo valor para o campo link seja inserido.
+
+Scenario: Teste da branch fixDesenvolvimento
