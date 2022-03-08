@@ -28,6 +28,12 @@ and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
 When Eu acesso "Compartilhar no facebook"
 Then sou redirecionado para o app do "facebook" com um "esboço de um post" contendo o link do cardapio de "entradas"
 
+Scenario: Compartilhar no gab
+Given: Eu sou um usuário "admin" do "restaurante do carlito" e tenho o app "gab" instalado no meu dispositivo
+and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
+When Eu acesso "Compartilhar no gab"
+Then sou redirecionado para o app do "gab" com um "esboço de um post" contendo o link do cardapio de "entradas"
+
 Scenario: Compartilhar no facebook com falha
 Given: Eu sou um usuário "admin" do "restaurante do carlito" e nao tenho o app "facebook" instalado no meu dispositivo
 and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
