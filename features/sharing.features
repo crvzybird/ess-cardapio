@@ -29,7 +29,13 @@ When Eu acesso "Compartilhar no facebook"
 Then sou redirecionado para o app do "facebook" com um "esboço de um post" contendo o link do cardapio de "entradas"
 
 Scenario: Compartilhar no facebook com falha
-Given: Eu sou um usuário "admin" do "restaurante do carlito" e tenho o app "facebook" instalado no meu dispositivo
+Given: Eu sou um usuário "admin" do "restaurante do carlito" e nao tenho o app "facebook" instalado no meu dispositivo
 and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
 When Eu acesso "Compartilhar no facebook"
 Then uma mensagem de erro aparece dizendo que o app do facebook nao esta instalado no celular
+
+Scenario: Compartilhar no twitter com falha
+Given: Eu sou um usuário "admin" do "restaurante do carlito" e nao tenho o app "twitter" instalado no meu dispositivo
+and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
+When Eu acesso "Compartilhar no twitter"
+Then uma mensagem de erro aparece dizendo que o app do twitter nao esta instalado no celular
