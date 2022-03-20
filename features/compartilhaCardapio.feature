@@ -39,7 +39,6 @@ Scenario: Compartilhar no twitter com falha
 	and Existe um cardápio "entradas" cadastrado no "restaurante do carlito"
 	When Eu acesso "Compartilhar no twitter"
 	Then uma mensagem de erro aparece dizendo que o app do twitter nao esta instalado no celular
-	Then preciso de um cenario adicional aqui
 
 Scenario: Compartilhar no orkut
 	Given: Eu sou um usuário "admin" do "restaurante do carlito" e tenho o app "orkut" instalado no meu dispositivo
