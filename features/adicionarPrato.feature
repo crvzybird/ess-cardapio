@@ -53,4 +53,12 @@ Feature: Cadastrar itens no cardápio
         When o sistema receber uma solicitação de cadastrar novo item
         And já existir um item com o mesmo nome
         Then uma resposta de negação será enviada ao cliente
-        And o sistema tem seus itens armazenados   
+        And o sistema tem seus itens armazenados
+
+    Scenario: Negar cadastro por exceder o limite de itens
+        Given o sistema tem seus itens armazenados
+        When o sistema receber uma solicitação de cadastrar novo item
+        And o limite de itens cadastrados já foi atingido
+        Then uma resposta de negação será enviada ao cliente
+        And o sistema tem seus itens armazenados
+        And linha extra
