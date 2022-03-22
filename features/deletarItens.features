@@ -1,0 +1,18 @@
+Scenario: João deseja excluir item do cardapio
+    Given João está na página de edição de itens do cardapio
+    And quer excluir um item
+    When João clica no botão em formato de lixeira próximo ao item
+    Then uma janela de pop-up é exibida
+    And pergunta se deseja excluir aquele item
+    When João clica em Sim
+    Then uma mensagem avisando que o item foi excluído com sucesso aparece
+    And o pop up é fechado
+
+Scenario: João deseja excluir item do cardapio porem desiste no meio do caminho
+    Given João está na página de edição de itens do Cardápio
+    And quer excluir um item
+    When João clica no botão em formato de lixeira próximo ao item
+    Then uma janela de pop-up é exibida 
+    And pergunta se deseja excluir aquele item
+    When João clica que Cancelar
+    Then a janela pop-up é fechada
