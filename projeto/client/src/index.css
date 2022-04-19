@@ -1,13 +1,74 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: hsl(210, 36%, 96%);
+    color: hsl(209, 61%, 16%);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    letter-spacing:  0.1rem;
+    text-transform: capitalize;
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+}
+
+h4 {
+    font-size: 0.875rem;
+}
+
+p {
+    margin-bottom: 1.25rem;
+    color: hsl(210, 22%, 49%);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90vw;
+    margin: auto;
+    max-width: 1170px;
+}
+
+@media screen and (min-width: 992px) {
+    .container{
+        width: 95vw;
+    }
+}
+
+.title, .navigation {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    object-fit: cover;
+    height: auto;
+    width: 125px;
+    border-radius: 0.25rem; 
+    margin-top: 20px; 
+}
+
+.underline {
+    width: 6rem;
+    height: 0.25rem;
+    background: #c59d5f;
+    margin-left: auto;
+    margin-right: auto;
 }
