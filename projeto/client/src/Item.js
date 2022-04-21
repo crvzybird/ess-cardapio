@@ -6,12 +6,17 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
 
 const Item = ({isMenu, id, description, name, price, showItems, setShowItems}) => {
     
     const [open, setOpen] = useState(false);
+
+    const handleDeleteItem = (id) => {
+        console.log(id);
+    };
 
     return ( 
         <div className="Item">
@@ -48,6 +53,7 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems}) =
                 {!isMenu 
                     ? <CardActions>
                         <Button size="small" variant="outlined" startIcon={<Edit />} onClick={() => setOpen(true)}>Edit</Button>
+                        <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => handleDeleteItem(id)}>Delete</Button>
                     </CardActions>
                     : null
                 }
