@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 
+import Axios from "axios";
+
 import EditBox from "./EditBox";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -10,12 +12,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
 
+import variables from './variables.json';
+
 const Item = ({isMenu, id, description, name, price, showItems, setShowItems}) => {
     
     const [open, setOpen] = useState(false);
 
     const handleDeleteItem = (id) => {
-        console.log(id);
+        Axios.delete(variables.URL + "delete/" + id).then(() => {
+            setShowItems([]);
+        });
     };
 
     return ( 
