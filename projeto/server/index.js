@@ -55,6 +55,18 @@ app.put("/edit", (req, res) => {
     });
 });
 
+//DELETE
+app.delete("/delete/:id", (req, res) => {
+    const { id } = req.params;
+
+    let request = "DELETE FROM item WHERE id = ?";
+
+    console.log(request);
+    
+    db.query(request, id, (err, result) => {
+        err ? console.log(err) : res.send(result);
+    });
+});
 
 app.listen(3001, () => {
     console.log("Server running!");
