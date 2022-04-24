@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import Axios from "axios";
 
@@ -8,15 +8,27 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
 
 import variables from './variables.json';
 
-const Item = ({isMenu, id, description, name, price, showItems, setShowItems}) => {
+const Item = ({isMenu, id, description, name, price, showItems, setShowItems, toDelete, setToDelete}) => {
     
+    const [checked, setChecked] = useState(false);
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        if(checked){
+            setToDelete(arr => [...arr, id]);
+        }
+        else{
+            setToDelete(toDelete.filter(item => item !== id));
+        }
+
+    }, [checked]);
 
     const handleDeleteItem = (id) => {
         Axios.delete(variables.URL + "delete/" + id).then(() => {
@@ -24,9 +36,18 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems}) =
         });
     };
 
+    const handleCheckbox = (event) => {
+        setChecked(event.target.checked);
+    };
+
     return ( 
         <div className="Item">
-             <EditBox 
+            {!isMenu
+                ? <Checkbox checked={checked} onClick={handleCheckbox}/>
+                : null
+            }
+
+            <EditBox 
                 id={id}
                 description={description}
                 name={name}
@@ -43,6 +64,7 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems}) =
                     image=" "
                     alt={name}
                 />
+
                 <CardContent>
                     <div className="ItemHeader">
                         <Typography gutterBottom variant="h5" component="div">
