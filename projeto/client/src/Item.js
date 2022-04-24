@@ -27,7 +27,6 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
         else{
             setToDelete(toDelete.filter(item => item !== id));
         }
-
     }, [checked]);
 
     const handleDeleteItem = (id) => {
@@ -42,11 +41,6 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
 
     return ( 
         <div className="Item">
-            {!isMenu
-                ? <Checkbox checked={checked} onClick={handleCheckbox}/>
-                : null
-            }
-
             <EditBox 
                 id={id}
                 description={description}
@@ -57,35 +51,47 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
                 showItems={showItems} 
                 setShowItems={setShowItems}
             />
-            <Card sx={{ maxWidth: 345 }} key={id}>
-                <CardMedia
-                    component="img"
-                    height="140"
-                    image=" "
-                    alt={name}
-                />
 
-                <CardContent>
-                    <div className="ItemHeader">
-                        <Typography gutterBottom variant="h5" component="div">
-                            {name}
-                        </Typography>
-                        <Typography gutterBottom variant="h6" component="div">
-                            R${price}
-                        </Typography>
-                    </div>
-                    <Typography variant="body2" color="text.secondary">
-                        {description}
-                    </Typography>
-                </CardContent>
-                {!isMenu 
-                    ? <CardActions>
-                        <Button size="small" variant="outlined" startIcon={<Edit />} onClick={() => setOpen(true)}>Edit</Button>
-                        <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => handleDeleteItem(id)}>Delete</Button>
-                    </CardActions>
+            <div className="item-left">
+                {!isMenu
+                    ? <Checkbox checked={checked} onClick={handleCheckbox}/>
                     : null
                 }
-            </Card>
+            </div>
+
+            <div className="item-body">
+                <Card sx={{ maxWidth: 345 }} key={id}>
+                    <CardMedia
+                        component="img"
+                        height="140"
+                        image=" "
+                        alt={name}
+                    />
+
+                    <CardContent>
+                        <div className="ItemHeader">
+                            <Typography gutterBottom variant="h5" component="div">
+                                {name}
+                            </Typography>
+                            <Typography gutterBottom variant="h6" component="div">
+                                R${price}
+                            </Typography>
+                        </div>
+                        <Typography variant="body2" color="text.secondary">
+                            {description}
+                        </Typography>
+                    </CardContent>
+                    
+                    {!isMenu 
+                        ? <CardActions>
+                            <Button size="small" variant="outlined" startIcon={<Edit />} onClick={() => setOpen(true)}>Edit</Button>
+                            <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => handleDeleteItem(id)}>Delete</Button>
+                        </CardActions>
+                        : null
+                    }
+                    
+                </Card>
+            </div>
         </div>
 
     );

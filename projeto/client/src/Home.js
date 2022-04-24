@@ -34,21 +34,20 @@ const Home = ({isMenu}) => {
                 </div>
 
                 <div className="navigation">
-                    <Add
-                        open={open}
-                        setOpen={setOpen}                        
-                        showItems={showItems} 
-                        setShowItems={setShowItems}
-                    />
                     <Button variant="contained" onClick={() => {navigate("/");}}>Home</Button>
-                    <Button variant="contained" onClick={() => setOpen(true)}>Add</Button>
                     <Button variant="contained" onClick={() => {navigate("/edit");}}>Edit</Button>
                 </div>
             
             </div>
 
             <div className="containerBody">
-                <Menu isMenu={isMenu} showItems={showItems} setShowItems={setShowItems} />
+                <Menu 
+                    isMenu={isMenu} 
+                    open={open} 
+                    setOpen={setOpen}
+                    showItems={showItems} 
+                    setShowItems={setShowItems} 
+                />
             </div>
 
   

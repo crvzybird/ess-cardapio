@@ -1,13 +1,16 @@
 import React, {useState} from "react";
 import Axios from "axios";
 
+import Add from "./Add";
 import Item from './Item';
 
+import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import variables from './variables.json';
 
-const Menu = ({isMenu, showItems, setShowItems}) => {
+const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
     const [toDelete, setToDelete] = useState([]);
 
     const handleDeleteAll = () => {
@@ -20,8 +23,19 @@ const Menu = ({isMenu, showItems, setShowItems}) => {
 
     return (
         <div className="MenuItems">
+            <Add
+                open={open}
+                setOpen={setOpen}
+                showItems={showItems} 
+                setShowItems={setShowItems}
+            />
             {!isMenu
-                ? <Button variant="contained" onClick={() => handleDeleteAll()}>Delete</Button>
+                ?
+                <div className="navigation"> 
+                    <Button variant="contained" size="small" startIcon={<AddIcon />}onClick={() => setOpen(true)}>Add</Button>
+                    <Button variant="contained" size="small" startIcon={<DeleteIcon />} onClick={() => handleDeleteAll()}>Delete</Button>
+                </div>
+                
                 : null
             }
             {typeof showItems !== "undefined" && showItems.map((item) => {
