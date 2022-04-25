@@ -9,6 +9,8 @@ const Home = () => {
 
     let navigate = useNavigate ();
 
+    const [open, setOpen] = useState(false);
+
     return (
         <div className="container">
             <div className="section"> 
@@ -20,6 +22,7 @@ const Home = () => {
 
                 <div className="navigation">
                     <Button variant="contained" onClick={() => {navigate("/");}}>Home</Button>
+                    <Button variant="contained" onClick={() => setOpen(true)}>Add</Button>
                 </div>
             
             </div>
