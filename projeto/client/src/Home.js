@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import Axios from 'axios';
 
 import Add from "./Add";
+import Item from './Item';
 
 import Button from '@mui/material/Button';
 
@@ -48,7 +49,15 @@ const Home = () => {
             <div className="MenuItems">
                 {typeof showItems !== "undefined" && showItems.map((item) => {
                     return(
-                        <h2> I'm a test! </h2>
+                        <Item
+                            key={item.id} 
+                            showItems={showItems} 
+                            setShowItems={setShowItems}
+                            id={item.id}
+                            name={item.name}
+                            price={item.price}
+                            description={item.description}
+                        />
                     );
                 })}
             </div>
