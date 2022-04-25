@@ -8,6 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
+import variables from './variables.json';
 
 const Add = (props) => {
 
@@ -18,7 +19,14 @@ const Add = (props) => {
     };
 
     const onSubmit = (values) => {
-        console.log(values);
+        Axios.post(variables.URL + "add", {
+            name: values.name,
+            price: values.price,
+            description: values.description, 
+        }).then((response) => {
+                console.log(response);
+                handleClose();
+            });
     }
 
     return (
