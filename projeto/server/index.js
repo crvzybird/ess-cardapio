@@ -32,6 +32,15 @@ app.post('/add', (req, res) => {
     });
 });
 
+//READ
+app.get("/all", (req, res) => {
+    let request = "SELECT * FROM item";
+
+    db.query(request, (err, result) => {
+        err ? console.log(err) : res.send(result);
+    });
+});
+
 app.listen(3001, () => {
     console.log("Server running!");
 }); 
