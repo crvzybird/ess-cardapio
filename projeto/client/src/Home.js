@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 import Axios from 'axios';
 
 import Add from "./Add";
-import Item from './Item';
+import Menu from "./Menu.js"
 
 import Button from '@mui/material/Button';
 
@@ -46,20 +46,8 @@ const Home = () => {
             
             </div>
 
-            <div className="MenuItems">
-                {typeof showItems !== "undefined" && showItems.map((item) => {
-                    return(
-                        <Item
-                            key={item.id} 
-                            showItems={showItems} 
-                            setShowItems={setShowItems}
-                            id={item.id}
-                            name={item.name}
-                            price={item.price}
-                            description={item.description}
-                        />
-                    );
-                })}
+            <div className="containerBody">
+                <Menu showItems={showItems} setShowItems={setShowItems} />
             </div>
 
   
