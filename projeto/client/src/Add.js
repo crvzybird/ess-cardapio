@@ -10,12 +10,12 @@ import TextField from '@mui/material/TextField';
 
 import variables from './variables.json';
 
-const Add = (props) => {
+const Add = ({open}, {setOpen}, {showItems}, {setShowItems}) => {
 
     const {register, handleSubmit} = useForm();
 
     const handleClose = () => {
-        props.setOpen(false);
+        setOpen(false);
     };
 
     const onSubmit = (values) => {
@@ -32,7 +32,7 @@ const Add = (props) => {
     return (
 
         <div>
-            <Dialog open={props.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add</DialogTitle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <DialogContent>
