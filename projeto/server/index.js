@@ -41,6 +41,21 @@ app.get("/all", (req, res) => {
     });
 });
 
+//UPDATE - EDIT
+app.put("/edit", (req, res) => {
+    const { id } = req.body;
+    const { name } = req.body;
+    const { price } = req.body;
+    const { description } = req.body;
+
+    let request = "UPDATE item SET name= ?, price = ?, description = ? WHERE id = ?";
+
+    db.query(request, [name, price, description, id], (err, result) => {
+        err ? console.log(err) : res.send(result);
+    });
+});
+
+
 app.listen(3001, () => {
     console.log("Server running!");
 }); 
