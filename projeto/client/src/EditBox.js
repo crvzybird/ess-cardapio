@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 
+import Axios from "axios";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
+
+import variables from './variables.json';
 
 const EditBox = ({id, description, name, price, open, setOpen, showItems, setShowItems}) => {
 
@@ -29,6 +32,16 @@ const EditBox = ({id, description, name, price, open, setOpen, showItems, setSho
 
     const handleEditItem = () => {
         console.log(editValues);
+        Axios.put(variables.URL + "edit", {
+            id: editValues.id,
+            name: editValues.name,
+            price: editValues.price,
+            description: editValues.description,
+
+          }).then(() => {
+              setShowItems([]);
+              handleClose();
+          });
     };
 
     return (
@@ -42,7 +55,7 @@ const EditBox = ({id, description, name, price, open, setOpen, showItems, setSho
                         autoFocus
                         fullWidth
                         required
-                        id="outlined-required"
+                        id="name"
                         label="Name"
                         margin="dense"
                         type="text"
@@ -54,7 +67,7 @@ const EditBox = ({id, description, name, price, open, setOpen, showItems, setSho
                         autoFocus
                         fullWidth
                         required
-                        id="outlined-required"
+                        id="price"
                         label="Price"
                         defaultValue={price}
                         onChange={handleChangeValues}
@@ -64,10 +77,10 @@ const EditBox = ({id, description, name, price, open, setOpen, showItems, setSho
                         autoFocus
                         fullWidth
                         multiline
-                        id="outlined-multiline-static"
+                        id="description"
                         label="Description"
                         margin="dense"
-                        rows={4}
+                        minRows={4}
                         type="text"
                         defaultValue={description}
                         onChange={handleChangeValues}
@@ -76,7 +89,7 @@ const EditBox = ({id, description, name, price, open, setOpen, showItems, setSho
                 </DialogContent>
 
                 <DialogActions>
-                    <Button onClick={handleClose} color="error">Cancel</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
                     <Button color="primary" onClick={() => handleEditItem()}>Save</Button>
                 </DialogActions>
 
