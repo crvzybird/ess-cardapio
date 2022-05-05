@@ -1,6 +1,8 @@
 import React from "react";
 import {useForm} from "react-hook-form";
 
+import Axios from 'axios';
+
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -10,7 +12,7 @@ import TextField from '@mui/material/TextField';
 
 import variables from './variables.json';
 
-const Add = ({open}, {setOpen}, {showItems}, {setShowItems}) => {
+const Add = ({open, setOpen, showItems, setShowItems}) => {
 
     const {register, handleSubmit} = useForm();
 
