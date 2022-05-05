@@ -1,7 +1,8 @@
 import React from "react";
+
 import Item from './Item';
 
-const Menu = ({showItems, setShowItems}) => {
+const Menu = ({isMenu, showItems, setShowItems}) => {
 
     return (
         <div className="MenuItems">
@@ -9,13 +10,17 @@ const Menu = ({showItems, setShowItems}) => {
             {typeof showItems !== "undefined" && showItems.map((item) => {
                 return(
                     <Item
-                        key={item.id} 
-                        showItems={showItems} 
-                        setShowItems={setShowItems}
-                        id={item.id}
+                        isMenu={isMenu}
+                        id={item.id} 
+                        description={item.description}
                         name={item.name}
                         price={item.price}
-                        description={item.description}
+                        showItems={showItems} 
+                        setShowItems={setShowItems}
+                        
+                        
+                        
+                        
                     />
                 );
             })}

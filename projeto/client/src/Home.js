@@ -11,7 +11,7 @@ import logo from "./brigadeiro.png";
 
 import variables from './variables.json';
 
-const Home = () => {
+const Home = ({isMenu}) => {
 
     let navigate = useNavigate ();
 
@@ -42,12 +42,13 @@ const Home = () => {
                     />
                     <Button variant="contained" onClick={() => {navigate("/");}}>Home</Button>
                     <Button variant="contained" onClick={() => setOpen(true)}>Add</Button>
+                    <Button variant="contained" onClick={() => {navigate("/edit");}}>Edit</Button>
                 </div>
             
             </div>
 
             <div className="containerBody">
-                <Menu showItems={showItems} setShowItems={setShowItems} />
+                <Menu isMenu={isMenu} showItems={showItems} setShowItems={setShowItems} />
             </div>
 
   
