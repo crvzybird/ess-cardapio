@@ -11,7 +11,7 @@ import logo from "./brigadeiro.png";
 
 import variables from './variables.json';
 
-const Home = () => {
+const Home = ({isMenu}) => {
 
     let navigate = useNavigate ();
 
@@ -48,7 +48,7 @@ const Home = () => {
             </div>
 
             <div className="containerBody">
-                <Menu showItems={showItems} setShowItems={setShowItems} />
+                <Menu isMenu={isMenu} showItems={showItems} setShowItems={setShowItems} />
             </div>
 
   

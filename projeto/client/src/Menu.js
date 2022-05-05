@@ -1,7 +1,7 @@
 import React from "react";
 import Item from './Item';
 
-const Menu = ({showItems, setShowItems}) => {
+const Menu = ({isMenu, showItems, setShowItems}) => {
 
     return (
         <div className="MenuItems">
