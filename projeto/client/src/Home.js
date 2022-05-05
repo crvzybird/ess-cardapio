@@ -42,6 +42,7 @@ const Home = () => {
                     />
                     <Button variant="contained" onClick={() => {navigate("/");}}>Home</Button>
                     <Button variant="contained" onClick={() => setOpen(true)}>Add</Button>
+                    <Button variant="contained" onClick={() => {navigate("/edit");}}>Edit</Button>
                 </div>
             
             </div>
