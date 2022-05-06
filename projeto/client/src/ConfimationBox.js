@@ -10,7 +10,20 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import variables from './variables.json';
 
-const ConfimationBox = ({dataList, tempList, setTempList, openPopUp, setOpenPopUp, setShowItems, setToDelete}) => {
+const ConfimationBox = ({
+    dataList, 
+    tempList,
+    setAlert, 
+    setAlertContent, 
+    setAlertWarning,
+    setTempList, 
+    openPopUp,
+    setOpenPopUp, 
+    setShowItems, 
+    setToDelete
+}) => {
+
+    const [hasError, setHasError] = useState(false);
 
     const handleClose = () => {
         if(tempList.length > 0){
@@ -22,10 +35,10 @@ const ConfimationBox = ({dataList, tempList, setTempList, openPopUp, setOpenPopU
     };
 
     const handleDeleteItem = () => {
-        
         if(dataList.length > 0){
             dataList.map((item) => {
-                Axios.delete(variables.URL + "delete/" + item).then(() => {
+                Axios.delete(variables.URL + "delete/" + item).then((res) => {
+                    setHasError(res.data.message ? false : true);
                     setShowItems([]);
                 });
             });
@@ -34,6 +47,17 @@ const ConfimationBox = ({dataList, tempList, setTempList, openPopUp, setOpenPopU
         if(tempList.length > 0){
             setToDelete([...tempList]);
             setTempList([]);
+        }
+
+        if(!hasError){
+            setAlertContent("Item deleted succefully!");
+            setAlertWarning("success");
+            setAlert(true);
+        }
+        else{
+            setAlertContent("Error! Item could not be deleted.");
+            setAlertWarning("error");
+            setAlert(true);
         }
         
         setOpenPopUp(false);

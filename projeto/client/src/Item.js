@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from "react";
 
-import Axios from "axios";
-
 import ConfimationBox from "./ConfimationBox";
 import EditBox from "./EditBox";
 
@@ -21,6 +19,9 @@ const Item = ({
     description, 
     name, 
     price,
+    setAlert, 
+    setAlertContent, 
+    setAlertWarning,
     openPopUp, setOpenPopUp,
     showItems, setShowItems, 
     toDelete, setToDelete
@@ -52,13 +53,16 @@ const Item = ({
     }, [checked]);
 
     return ( 
-        <div className="Item">
+        <div className="item">
             <EditBox 
                 id={id}
                 description={description}
                 name={name}
                 price={price}
                 open={open}
+                setAlert={setAlert}
+                setAlertContent={setAlertContent}
+                setAlertWarning={setAlertWarning}
                 setOpen={setOpen}
                 showItems={showItems} 
                 setShowItems={setShowItems}
@@ -69,6 +73,9 @@ const Item = ({
                 tempList={tempList}
                 setTempList={setTempList}
                 openPopUp={openPopUp}
+                setAlert={setAlert}
+                setAlertContent={setAlertContent}
+                setAlertWarning={setAlertWarning}
                 setOpenPopUp={setOpenPopUp}
                 setShowItems={setShowItems}
                 setToDelete={setToDelete}
@@ -91,7 +98,7 @@ const Item = ({
                     />
 
                     <CardContent>
-                        <div className="ItemHeader">
+                        <div className="item-header">
                             <Typography gutterBottom variant="h5" component="div">
                                 {name}
                             </Typography>
@@ -115,7 +122,6 @@ const Item = ({
                 </Card>
             </div>
         </div>
-
     );
 };
 

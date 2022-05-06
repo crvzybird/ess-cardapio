@@ -4,7 +4,9 @@ import Axios from 'axios';
 
 import Menu from "./Menu"
 
+import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
+import Collapse from '@mui/material/Collapse';
 
 import logo from "./brigadeiro.png";
 
@@ -14,6 +16,9 @@ const Home = ({isMenu}) => {
 
     let navigate = useNavigate ();
 
+    const [alert, setAlert] = useState(false);
+    const [alertWarn, setAlertWarning] = useState("");
+    const [alertContent, setAlertContent] = useState("");
     const [open, setOpen] = useState(false);
     const [showItems, setShowItems] = useState();
 
@@ -25,6 +30,10 @@ const Home = ({isMenu}) => {
 
     return (
         <div className="container">
+            <Collapse in={alert}>
+                <Alert onClose={() => {setAlert(false)}} severity={alertWarn} variant="filled">{alertContent}</Alert> 
+            </Collapse>
+
             <div className="title">
                 <img src={logo} className="logo" />
                 <h2> TortiLet Patisserie </h2>
@@ -39,6 +48,9 @@ const Home = ({isMenu}) => {
             <div className="containerBody">
                 <Menu 
                     isMenu={isMenu} 
+                    setAlert={setAlert}
+                    setAlertContent={setAlertContent}
+                    setAlertWarning={setAlertWarning}
                     open={open} 
                     setOpen={setOpen}
                     showItems={showItems} 

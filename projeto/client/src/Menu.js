@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import Axios from "axios";
+import React, {useState} from "react";
 
 import Add from "./Add";
 import ConfimationBox from "./ConfimationBox";
@@ -9,9 +8,18 @@ import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import variables from './variables.json';
 
-const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
+const Menu = ({
+    isMenu, 
+    setAlert, 
+    setAlertContent,
+    setAlertWarning, 
+    open, 
+    setOpen, 
+    showItems, 
+    setShowItems
+}) => {
+    
     const [toDelete, setToDelete] = useState([]);
     
     const [openPopUp, setOpenPopUp] = useState(false);
@@ -24,6 +32,9 @@ const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
         <div className="MenuItems">
             <Add
                 open={open}
+                setAlert={setAlert}
+                setAlertContent={setAlertContent}
+                setAlertWarning={setAlertWarning}
                 setOpen={setOpen}
                 showItems={showItems} 
                 setShowItems={setShowItems}
@@ -32,6 +43,9 @@ const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
             <ConfimationBox
                 dataList={toDelete}
                 openPopUp={openPopUp}
+                setAlert={setAlert}
+                setAlertContent={setAlertContent}
+                setAlertWarning={setAlertWarning}
                 setOpenPopUp={setOpenPopUp}
                 setShowItems={setShowItems}
             />
@@ -53,6 +67,9 @@ const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
                         description={item.description}
                         name={item.name}
                         price={item.price}
+                        setAlert={setAlert}
+                        setAlertContent={setAlertContent}
+                        setAlertWarning={setAlertWarning}
                         showItems={showItems} 
                         setShowItems={setShowItems}
                         toDelete={toDelete}
