@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import Add from "./Add";
 import ConfimationBox from "./ConfimationBox";
 import Item from './Item';
-import Cattegory from "./Cattegory";
+import Category from "./Category";
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -45,7 +45,7 @@ const Menu = ({
                 setShowItems={setShowItems}
             />
 
-            <Cattegory
+            <Category
                 open={category}
                 setOpen={setCategory}
                 showItems={showItems} 
@@ -73,7 +73,29 @@ const Menu = ({
                 : null
             }
 
-            {typeof showItems !== "undefined" && Object.entries(showItems).map(([category, itens]) => {
+            {typeof showItems !== 'undefined' && Array.isArray(showItems) && showItems.map((item) => {
+                return(
+                    <Item
+                        isMenu={isMenu}
+                        id={item.id} 
+                        description={item.description}
+                        name={item.name}
+                        price={item.price}
+                        setAlert={setAlert}
+                        setAlertContent={setAlertContent}
+                        setAlertWarning={setAlertWarning}
+                        showItems={showItems} 
+                        setShowItems={setShowItems}
+                        toDelete={toDelete}
+                        setToDelete={setToDelete}
+                        openPopUp={openPopUp}
+                        setOpenPopUp={setOpenPopUp}
+                    />
+                );
+            })}
+
+
+            {typeof showItems !== 'undefined' && !Array.isArray(showItems) && Object.entries(showItems).map(([category, itens]) => {
 
                     const menu = itens.map((item) => {
                         return(
@@ -97,7 +119,7 @@ const Menu = ({
                     })
                     return (
                         <React.Fragment>
-                            <div>
+                            <div style={{backgroundColor:  'rgb(255, 153, 153)', marginBottom: 10}}>
                             <Card variant="outlined" sx={!isMenu ? {marginLeft: 5, minWidth: 340} : {  minWidth: 340}}>
                                 <CardContent>
                                     <Typography align="center" variant="h5" component="div">
@@ -106,9 +128,10 @@ const Menu = ({
                                 </CardContent>
                             </Card>
                             <Divider sx={!isMenu ? {marginLeft: 5, minWidth: 340} : {  minWidth: 340}} />
-                            </div>
+                            
                             
                             {menu}
+                            </div>
                         </React.Fragment>
                         )
             })}
