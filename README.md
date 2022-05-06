@@ -1,12 +1,19 @@
 ## ess-cardapio
 Equipe 3 - Implementação da Feature "Cardápio" do ESS-Delivery-APP
 
+![image](https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
+![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![image](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![image](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
+
 # :memo: Requisitos
- Breve explicação e conceituação do que foi esse processo e como decidimos lidar com isso
+Processo inicial do projeto em que elicitamos os requisitos necessários/desejados  para que a aplicação em questão.Nele, cada colaborador em comunicação com o stakeholder criou scenarios demonstrando o comportamento que cada respectiva feature deveria assumir. 
+
 (Cada um falar sobre como pensou em fazer, como realmente implementou, quais dificuldades e o que poderia ser diferente/melhorado)
 (Para cada feature, uma imagem exibindo/indicando o que foi feito para o respectivo tópico em questão)
  - Criação/Leitura
- - Edição
+ - Edição 
+    
  - Remoção
  - Categoria
  - Link Compartilhamento
@@ -33,7 +40,7 @@ Equipe 3 - Implementação da Feature "Cardápio" do ESS-Delivery-APP
  - Remoção
  - Categoria
  - Link Compartilhamento
-# Arquitetura e linguagens de aplicações de SaSS
+# SaSS
  Breve explicação e conceituação do que foi esse processo e como decidimos lidar com isso
 (Cada um falar sobre como pensou em fazer, como realmente implementou, quais dificuldades e o que poderia ser diferente/melhorado)
 (Para cada feature, uma imagem exibindo/indicando o que foi feito para o respectivo tópico em questão)
@@ -76,13 +83,12 @@ Equipe 3 - Implementação da Feature "Cardápio" do ESS-Delivery-APP
  - Categoria
  - Link Compartilhamento
 
-# Demo e Projeto de referência
+# Demo
 
 ![react_gif](https://user-images.githubusercontent.com/39385359/166851702-e5e2abe3-839b-4f24-b882-32b9a13180f4.gif)
 
-https://www.youtube.com/watch?v=cMsuccmyX7Y&feature=youtu.be
 
 # TODO
- Aqui listamos alguns pontos que poderiam ser implementados:
+ Aqui listamos alguns pontos que estaremos buscando implementar futuramente:
 - funcionalidade de upload de imagem para o item no cardápio
-- ...
+- Implementar as demais features da aplicação Delivery Restaurante da disciplina em React
