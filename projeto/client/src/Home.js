@@ -20,10 +20,11 @@ const Home = ({isMenu}) => {
     const [alertWarn, setAlertWarning] = useState("");
     const [alertContent, setAlertContent] = useState("");
     const [open, setOpen] = useState(false);
+    const [category, setCategory] = useState(false);
     const [showItems, setShowItems] = useState();
-
+    
     useEffect(() => {
-        Axios.get(variables.URL + "all").then((response) => {
+        Axios.get(variables.URL + "menu").then((response) => {
           setShowItems(response.data);
         }, [showItems]);
     });
@@ -53,6 +54,8 @@ const Home = ({isMenu}) => {
                     setAlertWarning={setAlertWarning}
                     open={open} 
                     setOpen={setOpen}
+                    category={category}
+                    setCategory = {setCategory}
                     showItems={showItems} 
                     setShowItems={setShowItems} 
                 />
