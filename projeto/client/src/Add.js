@@ -14,7 +14,7 @@ import variables from './variables.json';
 
 const Add = ({open, setOpen, showItems, setShowItems}) => {
 
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, reset} = useForm();
 
     const handleClose = () => {
         setOpen(false);
@@ -28,6 +28,7 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
         }).then((response) => {
                 console.log(response);
                 handleClose();
+                reset();
             });
     }
 
