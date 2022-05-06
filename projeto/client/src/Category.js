@@ -18,31 +18,22 @@ import variables from './variables.json';
 const Add = ({open, setOpen, showItems, setShowItems}) => {
 
     const {register, handleSubmit, reset} = useForm();
-
-    const [toDelete, setToDelete] = React.useState('');
-    const [category, setCategory] = React.useState();
     
-    
-    React.useEffect(() => {
-        Axios.get(variables.URL + "category").then((response) => {
-           setCategory(response.data);
-        }, [category]);
-    });
-
-    const handleChange = (event) => {
-        setToDelete(event.target.value);
-    };
-
     const [addCategory1, setAddCategory1] = React.useState();
+    const [addCategory2, setAddCategory2] = React.useState();
+    const [category, setCategory] = React.useState();
+    const [toDelete, setToDelete] = React.useState('');
 
     const handleChangeAddCategory1 = (event) => {
         setAddCategory1(event.target.value);
     };
-
-    const [addCategory2, setAddCategory2] = React.useState();
     
     const handleChangeAddCategory2 = (event) => {
         setAddCategory2(event.target.value);
+    };
+    
+    const handleChange = (event) => {
+        setToDelete(event.target.value);
     };
 
     const handleClose = () => {
@@ -102,6 +93,12 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
                 reset();
             });
     }
+    
+    React.useEffect(() => {
+        Axios.get(variables.URL + "category").then((response) => {
+           setCategory(response.data);
+        }, [category]);
+    });
 
     return (
 
@@ -161,42 +158,44 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
                     <DialogContent>
                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
                     <Select
-                    required
-                    fullWidth
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={addCategory1}
-                    label="category"
-                    onChange={handleChangeAddCategory1}
+                        required
+                        fullWidth
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={addCategory1}
+                        label="category"
+                        onChange={handleChangeAddCategory1}
                     >
                     
-                    {typeof category !== "undefined" && category.map((item) => {
-                        return(<MenuItem value={item.id}>{item.name}</MenuItem>)
-                    })}
+                        {typeof category !== "undefined" && category.map((item) => {
+                            return(<MenuItem value={item.id}>{item.name}</MenuItem>)
+                        })}
 
                     </Select>
+                    
                     <InputLabel id="demo-simple-select-label">Item</InputLabel>
+                    
                     <Select
-                    required
-                    fullWidth
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={addCategory2}
-                    label="item"
-                    onChange={handleChangeAddCategory2}
+                        required
+                        fullWidth
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={addCategory2}
+                        label="item"
+                        onChange={handleChangeAddCategory2}
                     >
                     
-                    {typeof showItems !== "undefined" && Array.isArray(showItems) && showItems.map((item) => {
-                        return(<MenuItem value={item.id}>{item.name}</MenuItem>)
-                    })}
+                        {typeof showItems !== "undefined" && Array.isArray(showItems) && showItems.map((item) => {
+                            return(<MenuItem value={item.id}>{item.name}</MenuItem>)
+                        })}
 
                     </Select>
 
                     </DialogContent>
 
                     <DialogActions>
-                    <Button variant="contained" type="submit" onClick={handleDeleteIC} color="error">Remove</Button>
-                    <Button variant="contained" type="submit" onClick={handleAddIC}>Add</Button>
+                        <Button variant="contained" type="submit" onClick={handleDeleteIC} color="error">Remove</Button>
+                        <Button variant="contained" type="submit" onClick={handleAddIC}>Add</Button>
                     </DialogActions>
                 </form>
                 
