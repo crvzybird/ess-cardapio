@@ -16,10 +16,9 @@ app.use(cors(corsOptions));
 const db = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "12345678",
+    password: "password",
     database: "cardapio"
 });
-
 
 //CREATE
 app.post('/add', (req, res) => {
@@ -29,13 +28,8 @@ app.post('/add', (req, res) => {
 
     let request = "INSERT INTO item (name, price, description) VALUES (?, ?, ?)";
 
-    db.query(request, [name, price, description], (err, result) => {
-        res.send({
-            "id": result.insertId,
-            "name": name,
-            "price": price,
-            "description": description
-        });
+    db.query(request, [name, price, description], (err) => {
+        err ? res.send({"message": "false"}) : res.send({"message": "true"});
     });
 });
 
@@ -58,7 +52,7 @@ app.put("/edit", (req, res) => {
     let request = "UPDATE item SET name= ?, price = ?, description = ? WHERE id = ?";
 
     db.query(request, [name, price, description, id], (err, result) => {
-        err ? console.log(err) : res.send(result);
+        err ? res.send({"message": "false"}) : res.send({"message": "true"});
     });
 });
 
@@ -67,14 +61,12 @@ app.delete("/delete/:id", (req, res) => {
     const { id } = req.params;
 
     let request = "DELETE FROM item WHERE id = ?";
-
-    console.log(request);
     
-    db.query(request, id, (err, result) => {
-        err ? console.log(err) : res.send(result);
+    db.query(request, id, (err) => {
+        err ? res.send({"message": "false"}) : res.send({"message": "true"});
     });
 });
-
+/*
 //CREATE CATEGORY
 app.post('/category', (req, res) => {
     const name = req.body.name;
@@ -232,7 +224,7 @@ async function getMenu(){
     let promises2 = []
     let it = {"cat": [], "prom": []}
     result.forEach(element => {
-        if(Object.keys(element).length > 0){
+        if(typeof Object.keys !== 'undefined' && Object.keys(element).length > 0){
 
             response[catmaps[element[0].category_id]] = []
             
@@ -265,6 +257,8 @@ app.get("/menu", async (req, res) => {
     res.send(menu);
     
 });
+
+*/
 
 app.listen(3001, () => {
     console.log("Server running!");
