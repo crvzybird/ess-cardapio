@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 
 import Axios from "axios";
 
+import ConfimationBox from "./ConfimationBox";
 import EditBox from "./EditBox";
+
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -13,13 +15,33 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Edit from '@mui/icons-material/Edit';
 import Typography from '@mui/material/Typography';
 
-import variables from './variables.json';
-
-const Item = ({isMenu, id, description, name, price, showItems, setShowItems, toDelete, setToDelete}) => {
+const Item = ({
+    isMenu, 
+    id, 
+    description, 
+    name, 
+    price,
+    openPopUp, setOpenPopUp,
+    showItems, setShowItems, 
+    toDelete, setToDelete
+}) => {
     
     const [checked, setChecked] = useState(false);
     const [open, setOpen] = useState(false);
+    const [tempList, setTempList] = useState([]);
 
+    const handleCheckbox = (event) => {
+        setChecked(event.target.checked);
+    };
+
+    const handleSingleDelete = () => {
+        setTempList([...toDelete]);
+
+        setToDelete([id]);
+
+        setOpenPopUp(true);
+    }
+    
     useEffect(() => {
         if(checked){
             setToDelete(arr => [...arr, id]);
@@ -28,16 +50,6 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
             setToDelete(toDelete.filter(item => item !== id));
         }
     }, [checked]);
-
-    const handleDeleteItem = (id) => {
-        Axios.delete(variables.URL + "delete/" + id).then(() => {
-            setShowItems([]);
-        });
-    };
-
-    const handleCheckbox = (event) => {
-        setChecked(event.target.checked);
-    };
 
     return ( 
         <div className="Item">
@@ -50,6 +62,16 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
                 setOpen={setOpen}
                 showItems={showItems} 
                 setShowItems={setShowItems}
+            />
+
+            <ConfimationBox
+                dataList={toDelete}
+                tempList={tempList}
+                setTempList={setTempList}
+                openPopUp={openPopUp}
+                setOpenPopUp={setOpenPopUp}
+                setShowItems={setShowItems}
+                setToDelete={setToDelete}
             />
 
             <div className="item-left">
@@ -85,7 +107,7 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
                     {!isMenu 
                         ? <CardActions>
                             <Button size="small" variant="outlined" startIcon={<Edit />} onClick={() => setOpen(true)}>Edit</Button>
-                            <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => handleDeleteItem(id)}>Delete</Button>
+                            <Button size="small" variant="outlined" startIcon={<DeleteIcon />} color="error" onClick={() => handleSingleDelete()}>Delete</Button>
                         </CardActions>
                         : null
                     }
