@@ -19,7 +19,7 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
 
     const {register, handleSubmit, reset} = useForm();
 
-    const [age, setAge] = React.useState('');
+    const [toDelete, setToDelete] = React.useState('');
     const [category, setCategory] = React.useState();
     
     React.useEffect(() => {
@@ -27,8 +27,9 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
            setCategory(response.data);
         }, [category]);
     });
+
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setToDelete(event.target.value);
     };
 
     const handleClose = () => {
@@ -36,6 +37,7 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
     };
 
     const onAddCategory = (values) => {
+        console.log(values)
         Axios.post(variables.URL + "category", {
             name: values.name,
         }).then((response) => {
@@ -45,8 +47,10 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
             });
     }
     const onDeleteCategory = (values) => {
-        Axios.delete(variables.URL + "category", {
-            id: values.id,
+        console.log("deleting")
+        console.log(values)
+        Axios.delete(variables.URL + "category/" + toDelete, {
+            id: toDelete,
         }).then((response) => {
                 console.log(response);
                 handleClose();
@@ -63,7 +67,6 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
                     <DialogContent>
 
                         <TextField
-                            autoFocus
                             fullWidth
                             required
                             id="outlined-required"
@@ -75,13 +78,39 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
                         />
 
                     </DialogContent>
-
+                    
                     <DialogActions>
                         <Button variant="contained" type="submit">Add</Button>
                     </DialogActions>
                     
                 </form>
+                <DialogTitle id="form-dialog-title">Delete</DialogTitle>
+                <form onSubmit={handleSubmit(onDeleteCategory)}>
+                    <DialogContent>
 
+                    <Select
+                    required
+                    fullWidth
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={toDelete}
+                    label="id"
+                    onChange={handleChange}
+                    >
+
+                    
+                    {typeof category !== "undefined" && category.map((item) => {
+                        return(<MenuItem value={item.id}>{item.name}</MenuItem>)
+                    })}
+                    </Select>
+
+                    </DialogContent>
+
+                    <DialogActions>
+                        <Button variant="contained" type="submit">Delete</Button>
+                    </DialogActions>
+                    
+                </form>
                 
 
                 <DialogActions>
