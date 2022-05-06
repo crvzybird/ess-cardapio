@@ -40,8 +40,8 @@ Processo inicial do projeto em que elicitamos os requisitos necessários/desejad
  - Remoção
  - Categoria
  - Link Compartilhamento
-# SaSS
- Breve explicação e conceituação do que foi esse processo e como decidimos lidar com isso
+# SaaS
+
 (Cada um falar sobre como pensou em fazer, como realmente implementou, quais dificuldades e o que poderia ser diferente/melhorado)
 (Para cada feature, uma imagem exibindo/indicando o que foi feito para o respectivo tópico em questão)
  - Criação/Leitura
