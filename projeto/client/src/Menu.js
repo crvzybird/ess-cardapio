@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Axios from "axios";
 
 import Add from "./Add";
+import ConfimationBox from "./ConfimationBox";
 import Item from './Item';
 
 import AddIcon from '@mui/icons-material/Add';
@@ -13,14 +14,10 @@ import variables from './variables.json';
 const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
     const [toDelete, setToDelete] = useState([]);
     
-    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [openPopUp, setOpenPopUp] = useState(false);
 
     const handleDeleteAll = () => {
-        toDelete.map((item) => {
-            Axios.delete(variables.URL + "delete/" + item).then(() => {
-                setShowItems([]);
-            });
-        });
+        setOpenPopUp(toDelete.length > 0 ? true : false);     
     }
 
     return (
@@ -31,6 +28,14 @@ const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
                 showItems={showItems} 
                 setShowItems={setShowItems}
             />
+            
+            <ConfimationBox
+                dataList={toDelete}
+                openPopUp={openPopUp}
+                setOpenPopUp={setOpenPopUp}
+                setShowItems={setShowItems}
+            />
+
             {!isMenu
                 ?
                 <div className="navigation"> 
@@ -52,6 +57,8 @@ const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
                         setShowItems={setShowItems}
                         toDelete={toDelete}
                         setToDelete={setToDelete}
+                        openPopUp={openPopUp}
+                        setOpenPopUp={setOpenPopUp}
                     />
                 );
             })}

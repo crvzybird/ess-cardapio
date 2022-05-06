@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Axios from "axios";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -7,14 +8,34 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-const ConfimationBox = ({confirmSingleDelete, setConfirmSingleDelete, openPopUp, setOpenPopUp}) => {
+import variables from './variables.json';
+
+const ConfimationBox = ({dataList, tempList, setTempList, openPopUp, setOpenPopUp, setShowItems, setToDelete}) => {
 
     const handleClose = () => {
+        if(tempList.length > 0){
+            setToDelete([...tempList]);
+            setTempList([]);
+        }
+        
         setOpenPopUp(false);
     };
 
     const handleDeleteItem = () => {
-        setConfirmSingleDelete(true);
+        
+        if(dataList.length > 0){
+            dataList.map((item) => {
+                Axios.delete(variables.URL + "delete/" + item).then(() => {
+                    setShowItems([]);
+                });
+            });
+        }
+
+        if(tempList.length > 0){
+            setToDelete([...tempList]);
+            setTempList([]);
+        }
+        
         setOpenPopUp(false);
     }
 
