@@ -27,8 +27,8 @@ app.post('/add', (req, res) => {
 
     let request = "INSERT INTO item (name, price, description) VALUES (?, ?, ?)";
 
-    db.query(request, [name, price, description], (err, result) => {
-        res.send(result);
+    db.query(request, [name, price, description], (err) => {
+        err ? res.send({"message": "false"}) : res.send({"message": "true"});
     });
 });
 
@@ -50,8 +50,8 @@ app.put("/edit", (req, res) => {
 
     let request = "UPDATE item SET name= ?, price = ?, description = ? WHERE id = ?";
 
-    db.query(request, [name, price, description, id], (err, result) => {
-        err ? console.log(err) : res.send(result);
+    db.query(request, [name, price, description, id], (err) => {
+        err ? res.send({"message": "false"}) : res.send({"message": "true"});
     });
 });
 
@@ -60,11 +60,9 @@ app.delete("/delete/:id", (req, res) => {
     const { id } = req.params;
 
     let request = "DELETE FROM item WHERE id = ?";
-
-    console.log(request);
     
-    db.query(request, id, (err, result) => {
-        err ? console.log(err) : res.send(result);
+    db.query(request, id, (err) => {
+        err ? res.send({"message": "false"}) : res.send({"message": "true"});
     });
 });
 

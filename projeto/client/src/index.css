@@ -52,11 +52,18 @@ p {
     }
 }
 
-.Item{
+.item{
     display: flex;
     flex-direction: row;
     align-items: center;
 }
+
+.item-header{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 1vw;
+}
+
 
 .item-body{
     padding-bottom: 20px;

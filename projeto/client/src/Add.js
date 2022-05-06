@@ -12,7 +12,13 @@ import TextField from '@mui/material/TextField';
 
 import variables from './variables.json';
 
-const Add = ({open, setOpen, showItems, setShowItems}) => {
+const Add = ({
+    open,
+    setAlert, 
+    setAlertContent,
+    setAlertWarning,
+    setOpen
+}) => {
 
     const {register, handleSubmit, reset} = useForm();
 
@@ -26,10 +32,21 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
             price: values.price,
             description: values.description, 
         }).then((response) => {
-                console.log(response);
-                handleClose();
-                reset();
-            });
+
+            if(response.data.message){
+                setAlertContent("Item added succefully!");
+                setAlertWarning("success");
+                setAlert(true);
+            }
+            else{
+                setAlertContent("Error! Item could not be added.");
+                setAlertWarning("error");
+                setAlert(true);
+            }
+
+            handleClose();
+            reset();
+        });
     }
 
     return (

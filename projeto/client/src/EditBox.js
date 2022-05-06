@@ -10,7 +10,19 @@ import TextField from "@material-ui/core/TextField";
 
 import variables from './variables.json';
 
-const EditBox = ({id, description, name, price, open, setOpen, showItems, setShowItems}) => {
+const EditBox = ({
+    id, 
+    description, 
+    name, 
+    price, 
+    open, 
+    setAlert, 
+    setAlertContent,
+    setAlertWarning,
+    setOpen, 
+    showItems, 
+    setShowItems
+}) => {
 
     const [editValues, setEditValues] = useState({
         id: id,
@@ -38,10 +50,22 @@ const EditBox = ({id, description, name, price, open, setOpen, showItems, setSho
             price: editValues.price,
             description: editValues.description,
 
-          }).then(() => {
-              setShowItems([]);
-              handleClose();
-          });
+        }).then((response) => {
+
+            if(response.data.message){
+                setAlertContent("Item saved succefully!");
+                setAlertWarning("success");
+                setAlert(true);
+            }
+            else{
+                setAlertContent("Error! Item could not be saved.");
+                setAlertWarning("error");
+                setAlert(true);
+            }
+
+            setShowItems([]);
+            handleClose();
+        });
     };
 
     return (
