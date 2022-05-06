@@ -12,6 +12,8 @@ import variables from './variables.json';
 
 const Menu = ({isMenu, open, setOpen, showItems, setShowItems}) => {
     const [toDelete, setToDelete] = useState([]);
+    
+    const [confirmDelete, setConfirmDelete] = useState(false);
 
     const handleDeleteAll = () => {
         toDelete.map((item) => {

@@ -45,11 +45,6 @@ const Home = ({isMenu}) => {
                     setShowItems={setShowItems} 
                 />
             </div>
-
-<<<<<<< HEAD
-  
-=======
->>>>>>> 3cca245 (Refactor Home file)
         </div>
     );
 

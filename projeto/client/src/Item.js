@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 
 import Axios from "axios";
 
+import ConfimationBox from "./ConfimationBox";
 import EditBox from "./EditBox";
+
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -15,10 +17,21 @@ import Typography from '@mui/material/Typography';
 
 import variables from './variables.json';
 
-const Item = ({isMenu, id, description, name, price, showItems, setShowItems, toDelete, setToDelete}) => {
+const Item = ({
+    isMenu, 
+    id, 
+    description, 
+    name, 
+    price,
+    confirmDelete, setConfirmDelete,
+    showItems, setShowItems, 
+    toDelete, setToDelete
+}) => {
     
     const [checked, setChecked] = useState(false);
     const [open, setOpen] = useState(false);
+    const [openPopUp, setOpenPopUp] = useState(false);
+    const [confirmSingleDelete, setConfirmSingleDelete] = useState(false);
 
     useEffect(() => {
         if(checked){
@@ -29,10 +42,17 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
         }
     }, [checked]);
 
+    useEffect(() => {
+
+        if (confirmSingleDelete){
+            Axios.delete(variables.URL + "delete/" + id).then(() => {
+                setShowItems([]);
+            });
+        }
+    }, [confirmSingleDelete]);
+
     const handleDeleteItem = (id) => {
-        Axios.delete(variables.URL + "delete/" + id).then(() => {
-            setShowItems([]);
-        });
+        setOpenPopUp(true);
     };
 
     const handleCheckbox = (event) => {
@@ -50,6 +70,13 @@ const Item = ({isMenu, id, description, name, price, showItems, setShowItems, to
                 setOpen={setOpen}
                 showItems={showItems} 
                 setShowItems={setShowItems}
+            />
+
+            <ConfimationBox
+                openPopUp={openPopUp}
+                setOpenPopUp={setOpenPopUp}
+                confirmSingleDelete={confirmSingleDelete}
+                setConfirmSingleDelete={setConfirmSingleDelete}
             />
 
             <div className="item-left">
