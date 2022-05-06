@@ -19,22 +19,15 @@ const Home = ({isMenu}) => {
     const [alert, setAlert] = useState(false);
     const [alertWarn, setAlertWarning] = useState("");
     const [alertContent, setAlertContent] = useState("");
-    const [category, setCategory] = useState(false);
+    const [category, setCategory] = useState();
     const [open, setOpen] = useState(false);
     const [showItems, setShowItems] = useState();
 
 
     useEffect(() => {
-        Axios.get(variables.URL + "menu").then((response) => {
+        Axios.get(`${variables.URL}${isMenu ? "menu" : "all"}`).then((response) => {
         setShowItems(response.data);
-        }, [showItems]);
-    });
-
-    useEffect(() => {
-        Axios.get(variables.URL + "all").then((response) => {
-        setShowItems(response.data);
-        }, [showItems]);
-    });
+    }, [showItems])});
 
     return (
         <div className="container">

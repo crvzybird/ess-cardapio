@@ -29,6 +29,7 @@ const Menu = ({
 }) => {
     
     const [toDelete, setToDelete] = useState([]);
+    const [isCategory, setIsCategory] = useState(false);
     
     const [openPopUp, setOpenPopUp] = useState(false);
 
@@ -49,8 +50,10 @@ const Menu = ({
             />
 
             <Category
-                open={category}
-                setOpen={setCategory}
+                open={isCategory}
+                setOpen={setIsCategory}
+                category={category}
+                setCategory={setCategory}
                 showItems={showItems} 
                 setShowItems={setShowItems}
             />
@@ -70,7 +73,7 @@ const Menu = ({
                 <div sx={!isMenu ? {marginLeft: 5, minWidth: 340} : {  minWidth: 340 }} className="navigation"> 
                     <Button variant="contained" size="small" startIcon={<AddIcon />}onClick={() => setOpen(true)}>Add</Button>
                     <Button variant="contained" size="small" startIcon={<DeleteIcon />} onClick={() => handleDeleteAll()}>Delete</Button>
-                    <Button variant="contained" size="small" startIcon={<SettingsIcon />}onClick={() => setCategory(true)}>Categories</Button>
+                    <Button variant="contained" size="small" startIcon={<SettingsIcon />}onClick={() => setIsCategory(true)}>Categories</Button>
                 </div>
                 
                 : null
@@ -98,7 +101,7 @@ const Menu = ({
             })}
 
 
-            {isMenu && typeof showItems !== 'undefined' && !Array.isArray(showItems) && Object.entries(showItems).map(([category, itens]) => {
+            {typeof showItems !== 'undefined' && !Array.isArray(showItems) && Object.entries(showItems).map(([category, itens]) => {
                 const menu = itens.map((item) => {
                     return(
                         <Item
@@ -134,7 +137,8 @@ const Menu = ({
                             {menu}
                         </div>
                     </Fragment>
-                )})}
+                )}
+            )}
 
         </div>
     );

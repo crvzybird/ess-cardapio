@@ -66,7 +66,7 @@ app.delete("/delete/:id", (req, res) => {
         err ? res.send({"message": "false"}) : res.send({"message": "true"});
     });
 });
-/*
+
 //CREATE CATEGORY
 app.post('/category', (req, res) => {
     const name = req.body.name;
@@ -224,7 +224,7 @@ async function getMenu(){
     let promises2 = []
     let it = {"cat": [], "prom": []}
     result.forEach(element => {
-        if(typeof Object.keys !== 'undefined' && Object.keys(element).length > 0){
+        if(Object.keys(element).length > 0){
 
             response[catmaps[element[0].category_id]] = []
             
@@ -257,8 +257,6 @@ app.get("/menu", async (req, res) => {
     res.send(menu);
     
 });
-
-*/
 
 app.listen(3001, () => {
     console.log("Server running!");
