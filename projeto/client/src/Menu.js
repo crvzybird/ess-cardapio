@@ -70,7 +70,7 @@ const Menu = ({
                 <div sx={!isMenu ? {marginLeft: 5, minWidth: 340} : {  minWidth: 340 }} className="navigation"> 
                     <Button variant="contained" size="small" startIcon={<AddIcon />}onClick={() => setOpen(true)}>Add</Button>
                     <Button variant="contained" size="small" startIcon={<DeleteIcon />} onClick={() => handleDeleteAll()}>Delete</Button>
-                    <Button variant="contained" size="small" startIcon={<SettingsIcon />}onClick={() => setCategory(true)}>Category</Button>
+                    <Button variant="contained" size="small" startIcon={<SettingsIcon />}onClick={() => setCategory(true)}>Categories</Button>
                 </div>
                 
                 : null
