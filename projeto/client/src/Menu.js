@@ -1,21 +1,24 @@
-import React, Fragment, {useState} from "react";
+import React, {Fragment, useState} from "react";
 
 import Add from "./Add";
+import Category from "./Category";
 import ConfimationBox from "./ConfimationBox";
 import Item from './Item';
-import Category from "./Category";
+
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import Divider from '@mui/material/Divider';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Divider from '@mui/material/Divider';
 import SettingsIcon from '@mui/icons-material/Settings';
+import Typography from '@mui/material/Typography';
 
 
 const Menu = ({
     isMenu, 
+    category,
+    setCategory,
     setAlert, 
     setAlertContent,
     setAlertWarning, 
@@ -65,9 +68,9 @@ const Menu = ({
             {!isMenu
                 ?
                 <div sx={!isMenu ? {marginLeft: 5, minWidth: 340} : {  minWidth: 340 }} className="navigation"> 
-                    <Button variant="contained" size="small" startIcon={<SettingsIcon />}onClick={() => setCategory(true)}>Category</Button>
                     <Button variant="contained" size="small" startIcon={<AddIcon />}onClick={() => setOpen(true)}>Add</Button>
                     <Button variant="contained" size="small" startIcon={<DeleteIcon />} onClick={() => handleDeleteAll()}>Delete</Button>
+                    <Button variant="contained" size="small" startIcon={<SettingsIcon />}onClick={() => setCategory(true)}>Category</Button>
                 </div>
                 
                 : null
@@ -95,7 +98,7 @@ const Menu = ({
             })}
 
 
-            {typeof showItems !== 'undefined' && !Array.isArray(showItems) && Object.entries(showItems).map(([category, itens]) => {
+            {isMenu && typeof showItems !== 'undefined' && !Array.isArray(showItems) && Object.entries(showItems).map(([category, itens]) => {
                 const menu = itens.map((item) => {
                     return(
                         <Item
@@ -131,7 +134,7 @@ const Menu = ({
                             {menu}
                         </div>
                     </Fragment>
-            )})}
+                )})}
 
         </div>
     );

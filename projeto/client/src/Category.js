@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 import variables from './variables.json';
 
-const Add = ({open, setOpen, showItems, setShowItems}) => {
+const Category = ({open, setOpen, showItems, setShowItems}) => {
 
     const {register, handleSubmit, reset} = useForm();
     
@@ -41,7 +41,7 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
     };
 
     const onAddCategory = (values) => {
-        console.log(values)
+
         Axios.post(variables.URL + "category", {
             name: values.name,
         }).then((response) => {
@@ -83,14 +83,13 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
     }
 
     const onDeleteCategory = (values) => {
-        console.log("deleting")
-        console.log(values)
+        console.log("deleting");
+        console.log(values);
         Axios.delete(variables.URL + "category/" + toDelete, {
             id: toDelete,
         }).then((response) => {
                 console.log(response);
                 handleClose();
-                reset();
             });
     }
     
@@ -126,18 +125,20 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
                     </DialogActions>
                     
                 </form>
+
                 <DialogTitle id="form-dialog-title">Delete</DialogTitle>
                 <form onSubmit={handleSubmit(onDeleteCategory)}>
                     <DialogContent>
 
                     <Select
-                    required
-                    fullWidth
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={toDelete}
-                    label="id"
-                    onChange={handleChange}
+                        fullWidth
+                        required
+                        select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={toDelete}
+                        label="Category"
+                        onChange={handleChange}
                     >
 
                     
@@ -158,8 +159,9 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
                     <DialogContent>
                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
                     <Select
-                        required
                         fullWidth
+                        required
+                        select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={addCategory1}
@@ -176,8 +178,9 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
                     <InputLabel id="demo-simple-select-label">Item</InputLabel>
                     
                     <Select
-                        required
                         fullWidth
+                        required
+                        select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={addCategory2}
@@ -209,4 +212,4 @@ const Add = ({open, setOpen, showItems, setShowItems}) => {
 } 
 
 
-export default Add; 
+export default Category; 
