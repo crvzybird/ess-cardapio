@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, Fragment, {useState} from "react";
 
 import Add from "./Add";
 import ConfimationBox from "./ConfimationBox";
@@ -96,30 +96,30 @@ const Menu = ({
 
 
             {typeof showItems !== 'undefined' && !Array.isArray(showItems) && Object.entries(showItems).map(([category, itens]) => {
-
-                    const menu = itens.map((item) => {
-                        return(
-                            <Item
-                                isMenu={isMenu}
-                                id={item.id} 
-                                description={item.description}
-                                name={item.name}
-                                price={item.price}
-                                setAlert={setAlert}
-                                setAlertContent={setAlertContent}
-                                setAlertWarning={setAlertWarning}
-                                showItems={showItems} 
-                                setShowItems={setShowItems}
-                                toDelete={toDelete}
-                                setToDelete={setToDelete}
-                                openPopUp={openPopUp}
-                                setOpenPopUp={setOpenPopUp}
-                            />
-                        );
-                    })
-                    return (
-                        <React.Fragment>
-                            <div style={{backgroundColor:  'rgb(255, 153, 153)', marginBottom: 10}}>
+                const menu = itens.map((item) => {
+                    return(
+                        <Item
+                            isMenu={isMenu}
+                            id={item.id} 
+                            description={item.description}
+                            name={item.name}
+                            price={item.price}
+                            setAlert={setAlert}
+                            setAlertContent={setAlertContent}
+                            setAlertWarning={setAlertWarning}
+                            showItems={showItems} 
+                            setShowItems={setShowItems}
+                            toDelete={toDelete}
+                            setToDelete={setToDelete}
+                            openPopUp={openPopUp}
+                            setOpenPopUp={setOpenPopUp}
+                        />
+                   );
+                })
+                return (
+                    <Fragment>
+                        <div style={{backgroundColor:  'rgb(255, 153, 153)', marginBottom: 10}}>
+                    
                             <Card variant="outlined" sx={!isMenu ? {marginLeft: 5, minWidth: 340} : {  minWidth: 340}}>
                                 <CardContent>
                                     <Typography align="center" variant="h5" component="div">
@@ -128,17 +128,13 @@ const Menu = ({
                                 </CardContent>
                             </Card>
                             <Divider sx={!isMenu ? {marginLeft: 5, minWidth: 340} : {  minWidth: 340}} />
-                            
-                            
                             {menu}
-                            </div>
-                        </React.Fragment>
-                        )
-            })}
+                        </div>
+                    </Fragment>
+            )})}
 
         </div>
     );
-
 }
 
 export default Menu; 
