@@ -1,3 +1,5 @@
+CREATE DATABASE cardapio;
+
 CREATE TABLE item (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
@@ -11,8 +13,8 @@ CREATE TABLE category (
   PRIMARY KEY (`id`));
 
 CREATE TABLE category_items(
-    category_id INT(15) NOT NULL,
-    item_id INT(15) NOT NULL,
+    `category_id` INT(15) NOT NULL,
+    `item_id` INT(15) NOT NULL,
     FOREIGN KEY(category_id)
     REFERENCES category(id)
     ON DELETE CASCADE,
