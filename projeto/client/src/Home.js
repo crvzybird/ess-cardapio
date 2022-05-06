@@ -22,12 +22,19 @@ const Home = ({isMenu}) => {
     const [open, setOpen] = useState(false);
     const [category, setCategory] = useState(false);
     const [showItems, setShowItems] = useState();
-    
+    (isMenu 
+    ? 
     useEffect(() => {
         Axios.get(variables.URL + "menu").then((response) => {
           setShowItems(response.data);
         }, [showItems]);
-    });
+    })
+    :
+    useEffect(() => {
+        Axios.get(variables.URL + "all").then((response) => {
+          setShowItems(response.data);
+        }, [showItems]);
+    }))
 
     return (
         <div className="container">
